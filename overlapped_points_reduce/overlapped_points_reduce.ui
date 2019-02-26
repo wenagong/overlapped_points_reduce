@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>overlapped_points_reduceClass</class>
+ <widget class="QDialog" name="overlapped_points_reduceClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>overlapped_points_reduce</string>
+  </property>
+  <widget class="QPushButton" name="pushButton_1">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>80</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PCD格式转换</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>140</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>计算重叠点云</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>200</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>重叠点云消冗</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>80</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>合成完整点云</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>140</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>去除背景点云</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>200</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>点云滤波去噪</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="overlapped_points_reduce.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton_1</sender>
+   <signal>clicked()</signal>
+   <receiver>overlapped_points_reduceClass</receiver>
+   <slot>OnGetPcd()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>172</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>overlapped_points_reduceClass</receiver>
+   <slot>CalculateOverlap()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>110</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>184</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>overlapped_points_reduceClass</receiver>
+   <slot>GetFinalResult()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>170</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>220</x>
+     <y>175</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>overlapped_points_reduceClass</receiver>
+   <slot>GetWholeDatas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>371</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>352</x>
+     <y>269</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>overlapped_points_reduceClass</receiver>
+   <slot>RemoveBackgroundDatas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>121</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>140</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>overlapped_points_reduceClass</receiver>
+   <slot>FilterDenoise()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>362</x>
+     <y>191</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>476</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>OnGetPcd()</slot>
+  <slot>CalculateOverlap()</slot>
+  <slot>GetFinalResult()</slot>
+  <slot>GetWholeDatas()</slot>
+  <slot>RemoveBackgroundDatas()</slot>
+  <slot>FilterDenoise()</slot>
+ </slots>
+</ui>
