@@ -272,7 +272,7 @@ void overlapped_points_reduce::GetFinalResult() {
 		char match_name2[30];
 		sprintf_s(match_name2, "%s%d%s", "pcd_datas\\m_cloud", q, ".pcd");
 
-		//如果在final_datas里面找不到文件就去初始目录pcd_dats里面查找
+		//如果在final_datas里面找不到文件就去初始目录pcd_dats里面查找（避免重复去冗）
 		pcl::PointCloud<pcl::PointXYZ>::Ptr cloudA(new pcl::PointCloud<pcl::PointXYZ>);
 
 		if (pcl::io::loadPCDFile<pcl::PointXYZ>(cloud_name1, *cloudA) == -1) {  //读取失败
@@ -366,21 +366,31 @@ void overlapped_points_reduce::GetFinalResult() {
 				overlap.points[i].x = cloudA->points[cor->at(i).index_query].x;
 				overlap.points[i].y = cloudA->points[cor->at(i).index_query].y;
 				overlap.points[i].z = cloudA->points[cor->at(i).index_query].z;
+
+				cloudB->points[cor->at(i).index_match].x = NULL;
+				cloudB->points[cor->at(i).index_match].y = NULL;
+				cloudB->points[cor->at(i).index_match].z = NULL;
+
 			}
 			else {
 				overlap.points[i].x = cloudB->points[cor->at(i).index_match].x;
 				overlap.points[i].y = cloudB->points[cor->at(i).index_match].y;
 				overlap.points[i].z = cloudB->points[cor->at(i).index_match].z;
+
+				cloudA->points[cor->at(i).index_query].x = NULL;
+				cloudA->points[cor->at(i).index_query].y = NULL;
+				cloudA->points[cor->at(i).index_query].z = NULL;
+
 			}
 
-			//从AB中去除索引点部分
-			cloudA->points[cor->at(i).index_query].x = NULL;
-			cloudA->points[cor->at(i).index_query].y = NULL;
-			cloudA->points[cor->at(i).index_query].z = NULL;
+			////从AB中去除索引点部分 （这样会导致保留下来的重叠点无法继续与后面的点云做配准）
+			//cloudA->points[cor->at(i).index_query].x = NULL;
+			//cloudA->points[cor->at(i).index_query].y = NULL;
+			//cloudA->points[cor->at(i).index_query].z = NULL;
 
-			cloudB->points[cor->at(i).index_match].x = NULL;
-			cloudB->points[cor->at(i).index_match].y = NULL;
-			cloudB->points[cor->at(i).index_match].z = NULL;
+			//cloudB->points[cor->at(i).index_match].x = NULL;
+			//cloudB->points[cor->at(i).index_match].y = NULL;
+			//cloudB->points[cor->at(i).index_match].z = NULL;
 
 		}
 
